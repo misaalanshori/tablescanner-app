@@ -1,0 +1,12 @@
+{
+  "name": "tablescanner",
+  "displayName": "tablescanner",
+  "expo": {
+    "name": "tablescanner",
+    "slug": "tablescanner",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
