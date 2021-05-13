@@ -1,6 +1,6 @@
 import React from 'react';
 import { version } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Dimensions, FlatList, Button } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Dimensions, FlatList, Button, SafeAreaView } from 'react-native';
 import { Provider as PaperProvider, Appbar, Card, Portal, FAB, Title } from 'react-native-paper';
 
 const colors = {
@@ -20,7 +20,7 @@ const demoData = [
         id: '0002',
         title: 'Table 2',
         date: '2 February 2021',
-        image: 'https://picsum.photos/seed/fuck/500/300',
+        image: 'https://picsum.photos/seed/frick/500/300',
     },
     {
         id: '0003',
@@ -28,23 +28,16 @@ const demoData = [
         date: '3 March 2022',
         image: 'https://picsum.photos/seed/yourself/500/300',
     },
+    {
+        id: '0004',
+        title: 'Table 4',
+        date: '4 April 2023',
+        image: 'https://picsum.photos/seed/dumbass/500/300',
+    },
 ]
 
 
-const cardRender = () => {
-    return (
-        <Card>
-            <Card.Title
-            title="Card Title"
-            subtitle="Card Subtitle"/>
-            <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-            <Card.Actions>
-                <Button>Cancel</Button>
-                <Button>Ok</Button>
-            </Card.Actions>
-        </Card>
-    )
-}
+
 
 
 const TableScanner = () => {
@@ -54,6 +47,26 @@ const TableScanner = () => {
     const onStateChange = ({ open }) => setState({ open });
 
     const { open } = state;
+
+
+    const cardRender = ({item}) => (
+            <Card>
+                <Card.Title
+                title={item.title}
+                subtitle={item.date}/>
+                <Card.Cover source={{ uri: item.image }} />
+                <Card.Actions>
+                    <TouchableOpacity style={style.imgButton}>
+                        <Text style={style.buttonText}>View</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={style.imgButton}>
+                        <Text style={style.buttonText}>Delete</Text>
+                    </TouchableOpacity>
+                    
+                </Card.Actions>
+            </Card>
+        )
+
 
 
     return (
@@ -67,11 +80,16 @@ const TableScanner = () => {
 
 
         <View>
-            <FlatList>
-                <Title>hellow</Title>
-                
+            <SafeAreaView>
 
-            </FlatList>
+            <FlatList
+                data = {demoData}
+                renderItem = {cardRender}
+                keyExtractor = {demoData => demoData.id}
+            />
+
+            </SafeAreaView>
+            
 
         </View>
 
@@ -141,6 +159,21 @@ const style = StyleSheet.create({
         // borderWidth: 2,
         // borderColor: "red"
     },
+
+    imgButton: {
+        flex: 1,
+        alignItems: "center",
+        margin: 4,
+        paddingVertical: 2,
+        paddingHorizontal: 8,
+        borderWidth: 4,
+        borderColor: colors.buttonColor,
+        borderRadius: 6,
+        backgroundColor: colors.buttonColor,
+    },
+    buttonText: {
+        color: 'white',
+    }
 
 })
 
