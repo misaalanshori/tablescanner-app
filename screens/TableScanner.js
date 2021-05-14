@@ -2,6 +2,7 @@ import React from 'react';
 import { version } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, FlatList, Button, SafeAreaView } from 'react-native';
 import { Provider as PaperProvider, Appbar, Card, Portal, FAB, Title, Divider } from 'react-native-paper';
+import DocumentPicker from 'react-native-document-picker';
 
 const colors = {
     primary: '#546e7a',
